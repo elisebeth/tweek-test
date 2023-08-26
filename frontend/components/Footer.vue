@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p class="footer__description">2023 — <span class="footer__special">Vuetify</span></p>
+    <p class="footer__description">{{ new Date().getFullYear() }} — <span class="footer__special">Vuetify</span></p>
   </footer>
 </template>
 

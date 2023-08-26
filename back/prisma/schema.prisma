@@ -10,13 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum DEFAULT_COUNTRY {
+  USA
+  Russia
+}
+
 model User {
-  id       Int    @id @default(autoincrement())
+  id       Int             @id @default(autoincrement())
   title    String
   subtitle String
   avatar   String
   score    Int
-  country  String
+  country  DEFAULT_COUNTRY
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
