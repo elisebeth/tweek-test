@@ -2,9 +2,9 @@
   <aside class="users">
     <h2 class="users__heading">List</h2>
     <transition name="fade" mode="out-in" appear> 
-      <ul v-if="!usersStore.pending" class="users__list">
+      <ul v-if="!usersStore.isLoading" class="users__list">
         <transition-group name="shuffle">
-          <li v-for="user of usersStore.filteredUsers" class="users__item" :key="user.id" @click="usersStore.setSelectedUser(user.id)" @mouseleave="usersStore.setSelectedUser(null)">
+          <li v-for="user of filtersStore.filteredUsers" class="users__item" :key="user.id" @click="usersStore.setSelectedUser(user.id)" @mouseleave="usersStore.setSelectedUser(null)">
             <UsersModal v-show="usersStore.currentSelectedUserView && usersStore.currentSelectedUser === user.id" :user="usersStore.currentSelectedUserView"/>
             <img :src="user.avatar" alt="avatar" class="users__avatar">
             <div class="users__content">
@@ -21,8 +21,10 @@
 
 <script lang="ts" setup>
 import { useUsersStore } from '@/stores/Users.ts'
+import { useFiltersStore } from '@/stores/Filters';
 
 const usersStore = useUsersStore()
+const filtersStore = useFiltersStore()
 
 usersStore.getUsers()
 
